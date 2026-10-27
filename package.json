@@ -1,0 +1,12 @@
+{
+  "name": "ai-lead-assistant",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Triagem de mensagens de contato com IA (Gemini) e automação no n8n. Frontend em HTML, CSS e JavaScript puro.",
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

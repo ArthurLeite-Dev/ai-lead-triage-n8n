@@ -1,0 +1,26 @@
+# Segredos
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Dependências e dados do n8n
+node_modules/
+.n8n/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Sistema e editores
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+
+# Arquivos temporários
+*.tmp
+*.swp
+*.zip

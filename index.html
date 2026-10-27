@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Lead Assistant — triagem de contatos com IA</title>
+  <meta name="description" content="Envie uma mensagem de contato e receba categoria, prioridade, resumo e sugestão de resposta geradas por IA através de um fluxo no n8n.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="container">
+    <header class="page-header">
+      <p class="eyebrow">Projeto de portfólio</p>
+      <h1>AI Lead Assistant</h1>
+      <p class="lead">
+        Envie uma mensagem de contato. Um fluxo no n8n pede a uma IA que classifique
+        a solicitação e sugira uma resposta. Nada é enviado automaticamente.
+      </p>
+    </header>
+
+    <section class="card" aria-labelledby="titulo-form">
+      <h2 id="titulo-form">Novo contato</h2>
+
+      <form id="form-contato" novalidate>
+        <div class="field">
+          <label for="nome">Nome do contato <span class="req" aria-hidden="true">*</span></label>
+          <input type="text" id="nome" name="nome" maxlength="100" autocomplete="name"
+                 placeholder="Ex.: Maria Exemplo" aria-describedby="erro-nome" required>
+          <p class="field-error" id="erro-nome" hidden></p>
+        </div>
+
+        <div class="field">
+          <label for="email">E-mail <span class="req" aria-hidden="true">*</span></label>
+          <input type="email" id="email" name="email" maxlength="254" autocomplete="email"
+                 placeholder="nome@exemplo.com" aria-describedby="erro-email" required>
+          <p class="field-error" id="erro-email" hidden></p>
+        </div>
+
+        <div class="field">
+          <label for="assunto">Assunto <span class="req" aria-hidden="true">*</span></label>
+          <input type="text" id="assunto" name="assunto" maxlength="150"
+                 placeholder="Ex.: Orçamento para um site institucional"
+                 aria-describedby="erro-assunto" required>
+          <p class="field-error" id="erro-assunto" hidden></p>
+        </div>
+
+        <div class="field">
+          <label for="mensagem">Mensagem <span class="req" aria-hidden="true">*</span></label>
+          <textarea id="mensagem" name="mensagem" maxlength="2000" rows="6"
+                    placeholder="Descreva o que o contato precisa…"
+                    aria-describedby="erro-mensagem contador" required></textarea>
+          <div class="field-meta">
+            <p class="field-error" id="erro-mensagem" hidden></p>
+            <p class="counter" id="contador">0 / 2000</p>
+          </div>
+        </div>
+
+        <button type="submit" id="btn-enviar" class="btn btn-primary">
+          <span class="spinner" aria-hidden="true" hidden></span>
+          <span id="btn-texto">Analisar mensagem</span>
+        </button>
+
+        <p class="hint">Demonstração: use dados fictícios. O texto é enviado à API do Google Gemini.</p>
+
+        <div id="status" class="alert" role="status" aria-live="polite" hidden></div>
+      </form>
+    </section>
+
+    <section id="resultado" class="results" aria-labelledby="titulo-resultado" tabindex="-1" hidden>
+      <h2 id="titulo-resultado">Resultado da análise</h2>
+
+      <div class="result-grid">
+        <article class="card">
+          <h3>Categoria</h3>
+          <p class="result-value"><span id="res-categoria" class="badge badge-categoria"></span></p>
+        </article>
+        <article class="card">
+          <h3>Prioridade</h3>
+          <p class="result-value"><span id="res-prioridade" class="badge"></span></p>
+        </article>
+      </div>
+
+      <article class="card">
+        <h3>Resumo</h3>
+        <p id="res-resumo" class="result-text"></p>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <h3>Resposta sugerida</h3>
+          <button type="button" id="btn-copiar" class="btn btn-secondary">Copiar resposta</button>
+        </div>
+        <p id="res-resposta" class="result-text reply-text"></p>
+        <p class="hint">
+          Sugestão gerada por IA: revise antes de usar. Este sistema não envia e-mails
+          nem executa nenhuma ação externa.
+        </p>
+      </article>
+    </section>
+
+    <footer class="page-footer">
+      <p>Versão demonstrativa. Não use em produção sem medidas adicionais de segurança.</p>
+    </footer>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
